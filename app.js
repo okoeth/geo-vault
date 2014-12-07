@@ -4,12 +4,16 @@ var path = require('path');
 
 var app = express();
 
+app.set('port', (process.env.PORT || 3000));
+
 // view engine setup
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(3000);
+app.listen(app.get('port'), function() {
+  console.log("Node app is running at localhost:" + app.get('port'));
+});
 
 var locationsById = {
     "123" : { id: "123", longitude: "48", latitude: "52" },
