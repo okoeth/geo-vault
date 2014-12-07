@@ -7,19 +7,72 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 191,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app.js",
+			"settings":
+			{
+				"buffer_size": 1665,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Local:    master ~/Documents/mm-workspace/geo-vault\nHead:     05dcc60 Port for Heroku\n\n\nUntracked files:\n	.gitignore\n\nStaged changes:\n	Modified   app.js\n\n\n# Movement:\n#    r = refresh status\n#    1-5 = jump to section\n#    n = next item, N = next section\n#    p = previous item, P = previous section\n#\n# Staging:\n#    s = stage file/section, S = stage all unstaged files\n#    ctrl+shift+s = stage all unstaged and untracked files\n#    u = unstage file/section, U = unstage all files\n#    backspace = discard file/section, shift+backspace = discard everything\n#\n# Commit:\n#    c = commit, C = commit -a (add unstaged)\n#    ctrl+shift+c = commit --amend (amend previous commit)\n#\n# Other:\n#    i = ignore file, I = ignore pattern\n#    enter = open file\n#    d = view diff\n#\n# Stashes:\n#    a = apply stash, A = pop stash\n#    z = create stash, Z = create stash including untracked files\n#    backspace = discard stash",
+			"settings":
+			{
+				"buffer_size": 915,
+				"line_ending": "Unix",
+				"name": "*git-status*: geo-vault",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "Added callback param for locations\n# Please enter the commit message for your changes. Lines starting\n# with '#' will be ignored, and an empty message aborts the commit.\n# On branch master\n# Changes to be committed:\n#   (use \"git reset HEAD <file>...\" to unstage)\n#\n#	modified:   app.js\n#\n# Untracked files:\n#   (use \"git add <file>...\" to include in what will be committed)\n#\n#	.gitignore\n#\n",
+			"settings":
+			{
+				"buffer_size": 392,
+				"line_ending": "Unix",
+				"name": "COMMIT_EDITMSG",
+				"scratch": true
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 347.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"git s",
+				"Git: Status"
+			],
+			[
+				"git sta",
+				"Git: Status"
+			],
+			[
+				"gi",
+				"Git: Stash"
+			],
+			[
+				"git",
+				"Git: Status"
+			],
 			[
 				"pack",
 				"Package Control: List Packages"
 			]
 		],
-		"width": 449.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -162,8 +215,130 @@
 	"groups":
 	[
 		{
+			"selected": 3,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 191,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								106,
+								106
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1665,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1629,
+								1629
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 439.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 915,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								105,
+								105
+							]
+						],
+						"settings":
+						{
+							"__vi_external_disable": true,
+							"draw_white_space": "none",
+							"git_repo": "/Users/oliverkoeth/Documents/mm-workspace/geo-vault",
+							"git_status": true,
+							"git_view": "status",
+							"syntax": "Packages/SublimeGit/syntax/SublimeGit Status.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 392,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								34,
+								34
+							]
+						],
+						"settings":
+						{
+							"git_repo": "/Users/oliverkoeth/Documents/mm-workspace/geo-vault",
+							"git_view": "commit",
+							"syntax": "Packages/SublimeGit/syntax/SublimeGit Commit Message.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -205,6 +380,14 @@
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.git-commit":
+	{
+		"height": 100.0
+	},
+	"output.git-init":
+	{
+		"height": 100.0
 	},
 	"project": "geo-vault.sublime-project",
 	"replace":

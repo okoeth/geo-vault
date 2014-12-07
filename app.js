@@ -53,7 +53,8 @@ app.get('/location/:id', function (req, res) {
 
 app.get('/locations', function (req, res) {
 	console.log('GET: /locations');
-  	res.end('vaultLocations('+JSON.stringify(locationsById)+')')
+	callback_val = req.param('callback');
+  	res.end(callback_val+'('+JSON.stringify(locationsById)+');')
 });
 
 
