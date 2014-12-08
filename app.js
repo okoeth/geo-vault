@@ -32,7 +32,7 @@ app.post('/location', function (req, res) {
         longitude : req.body.longitude,
         latitude : req.body.latitude
 	};
-  	res.end("ok")
+  res.end("ok")
 });
 
 app.get('/location', function (req, res) {
@@ -42,13 +42,15 @@ app.get('/location', function (req, res) {
         longitude : req.param('longitude'),
         latitude : req.param('latitude')
 	};
-  	res.end('vaultLocation('+JSON.stringify(locationsById[req.param('id')])+')')
+  callback_val = req.param('callback');
+  res.end(callback_val+'('+JSON.stringify(locationsById[req.param('id')])+')')
 });
 
 app.get('/location/:id', function (req, res) {
 	console.log('GET: /location:id');
 	id_val = req.param('id');
-  	res.end('vaultLocation('+JSON.stringify(locationsById[id_val])+')')
+  callback_val = req.param('callback');
+  res.end(callback_val+'('+JSON.stringify(locationsById[id_val])+')')
 });
 
 app.get('/locations', function (req, res) {
