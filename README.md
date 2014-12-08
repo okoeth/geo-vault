@@ -17,7 +17,16 @@ As the intention of this vault is to be integrated in cloud solutions to host ge
 
 ### Call for getting all locations
     ...
-
+    $.ajax({
+        type : "GET",
+        url : "https://morning-ridge-5891.herokuapp.com/locations?callback=?", 
+        dataType: "jsonp", 
+        success: function(data) { 
+            console.log(data); //formatted JSON data 
+            $scope.$apply(function() {
+                $scope.locations = data;
+            });
+        } 
     ...
 
 ### Call for getting one location by ID
@@ -27,6 +36,19 @@ As the intention of this vault is to be integrated in cloud solutions to host ge
 
 ### Call for adding one location
     ...
+    url_val = 
+        "https://morning-ridge-5891.herokuapp.com/location?callback=?&id="+
+        $scope.newId+"&longitude="+
+        $scope.newLongitude+"&latitude="+
+        $scope.newLatitude;
+    $.ajax({
+        type : "GET",
+        url : url_val, 
+        dataType: "jsonp", 
+        success: function(data) { 
+            console.log(data); //formatted JSON data 
+        } 
+    });
 
     ...
 
