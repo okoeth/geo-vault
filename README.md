@@ -12,6 +12,10 @@ The API of the geo vault can be used with the following URLs (nothing for REST p
 ### Add one location
     https://<server>:<port>/location/?callback=<function>&id=<id>&longitude=<longitude>&latitude=<latitude>
 
+### Call acting as gateway to telematics backend
+    https://<server>:<port>/gateway/?callback=<function>&transaction=<transaction>&payload=<payload>
+
+
 ## Using the API from a web client
 As the intention of this vault is to be integrated in cloud solutions to host geo data on premise (or on territory), a cross origin call is required to access the vault. This can be achieved using the following jQuery helper method:
 
@@ -19,7 +23,7 @@ As the intention of this vault is to be integrated in cloud solutions to host ge
     ...
     $.ajax({
         type : "GET",
-        url : "https://morning-ridge-5891.herokuapp.com/locations?callback=?", 
+        url : "https://<server>/locations?callback=?", 
         dataType: "jsonp", 
         success: function(data) { 
             console.log(data); //formatted JSON data 
@@ -37,10 +41,26 @@ As the intention of this vault is to be integrated in cloud solutions to host ge
 ### Call for adding one location
     ...
     url_val = 
-        "https://morning-ridge-5891.herokuapp.com/location?callback=?&id="+
+        "https://<server>/location?callback=?&id="+
         $scope.newId+"&longitude="+
         $scope.newLongitude+"&latitude="+
         $scope.newLatitude;
+    $.ajax({
+        type : "GET",
+        url : url_val, 
+        dataType: "jsonp", 
+        success: function(data) { 
+            console.log(data); //formatted JSON data 
+        } 
+    });
+
+    ...
+
+### Call to telematics backend gateway
+    ...
+    url_val = 
+        "https://<server>/gateway?callback=?&transaction=TransactionName"+
+        "&paylod=PayloadString";
     $.ajax({
         type : "GET",
         url : url_val, 
