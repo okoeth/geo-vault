@@ -39,9 +39,10 @@ var locationsById = {
 */
 
 var locationsById = null;
+var POIsByVid = null;
 
 app.get('/', function (req, res) {
-  res.render('Hello Vault');
+  res.render('index','Hello Vault');
 });
 
 app.post('/location', function (req, res) {
@@ -50,7 +51,8 @@ app.post('/location', function (req, res) {
 	locationsById[req.body.id] = {
         id : req.body.id,
         longitude : req.body.longitude,
-        latitude : req.body.latitude
+        latitude : req.body.latitude,
+        createdTime : new Date()
 	};
   logger.info('DATA: >>Before write');
   fs.writeFileSync('database.json', JSON.stringify(locationsById));
@@ -72,8 +74,13 @@ app.get('/location', function (req, res) {
 app.get('/location/:id', function (req, res) {
 	logger.info('GET: /location:id');
 	id_val = req.param('id');
-  callback_val = req.param('callback');
-  res.end(callback_val+'('+JSON.stringify(locationsById[id_val])+')')
+    callback_val = req.param('callback');
+
+    console.log("---------------");
+    console.log(id_val);
+    console.log(callback_val);
+    console.log(locationsById[id_val]);
+    res.end(callback_val+'('+JSON.stringify(locationsById[id_val])+')')
 });
 
 app.get('/locations', function (req, res) {
@@ -88,12 +95,36 @@ app.get('/gateway', function (req, res) {
   res.end(callback_val+'('+"{result:'okay'}"+');')
 });
 
-//http.createServer(app).listen(80,function () {
-//    console.log('Http server listening on port ' + 80);
-//});
+// the service console can get store the POI information by this service  in the gateway
+// input jsonr:{vid:"",title: "",address:"",longitude:"",latitude:""}
+// output paramter: token
+app.get('/poi/:id',function(req,res){
+    logger.info('GET: /poi:id');
+    id_val   = req.param('id');
+    callback_val = req.param('callback');
+
+    var poi = {};
+    poi.title  = req.param('title').trim();
+    poi.address = req.param('address').trim();
+    poi.longitude = req.param('lng').trim();
+    poi.latitude = req.param('lat').trim();
+
+    var result = {};
+    result.resultCode = 0;
+    result.resultDesc = '';
+    result.poi = poi ;
+    console.log(JSON.stringify(result));
+
+    logger.info('DATA: >>Before write');
+    fs.writeFileSync('poi--database.json', JSON.stringify(result));
+    logger.info('DATA: >>After write');
+
+    res.end(callback_val +'(' + JSON.stringify(result) + ')' );
+})
 
 https.createServer(options, app).listen(443,function () {
     locationsById=JSON.parse(fs.readFileSync('database.json'));
+    //POIsByVid = JSON.parse(fs.readfileSync('poi-database.json'));
     logger.info('Https server listening on port ' + 443);
 });
 
