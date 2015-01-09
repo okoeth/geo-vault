@@ -54,6 +54,7 @@ app.post('/location', function (req, res) {
         latitude : req.body.latitude,
         createdTime : new Date()
 	};
+    console.log(locationsById)
   logger.info('DATA: >>Before write');
   fs.writeFileSync('database.json', JSON.stringify(locationsById));
   logger.info('DATA: >>After write');
@@ -67,6 +68,9 @@ app.get('/location', function (req, res) {
         longitude : req.param('longitude'),
         latitude : req.param('latitude')
 	};
+    logger.info('DATA: >>Before write');
+    fs.writeFileSync('database.json', JSON.stringify(locationsById));
+    logger.info('DATA: >>After write');
   callback_val = req.param('callback');
   res.end(callback_val+'('+JSON.stringify(locationsById[req.param('id')])+')')
 });
@@ -75,12 +79,14 @@ app.get('/location/:id', function (req, res) {
 	logger.info('GET: /location:id');
 	id_val = req.param('id');
     callback_val = req.param('callback');
-
-    console.log("---------------");
-    console.log(id_val);
-    console.log(callback_val);
-    console.log(locationsById[id_val]);
     res.end(callback_val+'('+JSON.stringify(locationsById[id_val])+')')
+});
+
+app.get('/call/:id', function (req, res) {
+    logger.info('GET: /call:id');
+    id_val = req.param('id');
+    callback_val = req.param('callback');
+    res.end(callback_val+'('+JSON.stringify(CallsByCid[id_val])+')')
 });
 
 app.get('/locations', function (req, res) {
@@ -116,15 +122,15 @@ app.get('/poi/:id',function(req,res){
     console.log(JSON.stringify(result));
 
     logger.info('DATA: >>Before write');
-    fs.writeFileSync('poi--database.json', JSON.stringify(result));
+    fs.writeFileSync('poi-database.json', JSON.stringify(result));
     logger.info('DATA: >>After write');
-
     res.end(callback_val +'(' + JSON.stringify(result) + ')' );
 })
 
 https.createServer(options, app).listen(443,function () {
     locationsById=JSON.parse(fs.readFileSync('database.json'));
-    //POIsByVid = JSON.parse(fs.readfileSync('poi-database.json'));
+    POIsByVid = JSON.parse(fs.readFileSync('poi-database.json'));
+    CallsByCid = JSON.parse(fs.readFileSync('call-database.json'));
     logger.info('Https server listening on port ' + 443);
 });
 
