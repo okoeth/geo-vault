@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GEO Portal</title>
+    <link href="./stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="./stylesheets/docs.min.css" rel="stylesheet">
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.js"></script>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div id="top-navbar" class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="./imgs/ntt.jpg" />
+            </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/log">Log</a></li>
+                <li class="active"><a href="/data">Data</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<main class="bs-docs-masthead" id="content" role="main">
+    <div class="container">
+        <<ul class="nav nav-tabs">
+            <li class="active"><a href="#location" data-toggle="tab">Location Information</a></li>
+            <li ><a href="#poi" data-toggle="tab">POI Information</a></li>
+            <li><a href="#call" data-toggle="tab">Call Information</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="location">
+                <div class="panel panel-default">
+                    <!-- Table -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>longitude</th>
+                                <th>latitude</th>
+                                <th>timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% locations.forEach(function(location){ %>
+                            <tr>
+                                <td><%= location.id%></td>
+                                <td><%= location.longitude%></td>
+                                <td><%= location.latitude%></td>
+                                <td><%= location.Datetime%></td>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="call">
+                <div class="panel panel-default">
+                    <!-- Table -->
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>token</th>
+                            <th>longitude</th>
+                            <th>latitude</th>
+                            <th>timestamp</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% callLocations.forEach(function(callLocation){ %>
+                        <tr>
+                            <td><%= callLocation.token%></td>
+                            <td><%= callLocation.longitude%></td>
+                            <td><%= callLocation.latitude%></td>
+                            <td><%= callLocation.datetime%></td>
+                        </tr>
+                        <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="poi">
+                <div class="panel panel-default">
+                    <!-- Table -->
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>vehicle id</th>
+                            <th>call id</th>
+                            <th>longitude</th>
+                            <th>latitude</th>
+                            <th>title</th>
+                            <th>address</th>
+                            <th>timestamp</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% poiLocations.forEach(function(poiLocation){ %>
+                        <tr>
+                            <td><%= poiLocation.vin%></td>
+                            <td><%= poiLocation.callid%></td>
+                            <td><%= poiLocation.longitude%></td>
+                            <td><%= poiLocation.latitude%></td>
+                            <td><%= poiLocation.title%></td>
+                            <td><%= poiLocation.address%></td>
+                            <td><%= poiLocation.datetime%></td>
+                        </tr>
+                        <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</main>
+
+<footer class="footer ">
+    <div class="container">
+        <div class="row footer-bottom">
+            <ul class="list-inline text-center">
+                <li>©2015 NTT Data</li>
+            </ul>
+        </div>
+    </div>
+</footer>
+<script>
+
+</script>
+</body>
+</html>
