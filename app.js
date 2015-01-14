@@ -38,7 +38,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/location', function (req, res) {
-	logger.info('GET: /location');
+	logger.info('GET: /location – store location');
 	locationsById[req.param('id')] = {
         id : req.param('id'),
         longitude : req.param('longitude'),
@@ -51,19 +51,19 @@ app.get('/location', function (req, res) {
   res.end(callback_val+'('+JSON.stringify(locationsById[req.param('id')])+')')
 });
 app.get('/locations', function (req, res) {
-    logger.info('GET: /locations');
+    logger.info('GET: /locations - get locations');
     callback_val = req.param('callback');
     res.end(callback_val+'('+JSON.stringify(locationsById)+');')
 });
 app.get('/location/:id', function (req, res) {
-    logger.info('GET: /location:id');
+    logger.info('GET: /location:id - get location by specified token');
     id_val = req.param('id');
     callback_val = req.param('callback');
     res.end(callback_val+'('+JSON.stringify(locationsById[id_val])+')')
 });
 app.post('/location', function (req, res) {
     logger.info(req.body);
-    logger.info('POST: /location');
+    logger.info('POST: /location - store location');
     locationsById[req.body.id] = {
         id : req.body.id,
         longitude : req.body.longitude,
@@ -89,11 +89,9 @@ app.get('/call/:id', function (req, res) {
 // input jsonr:{vid:"",title: "",address:"",longitude:"",latitude:""}
 // output paramter: token
 app.get('/poi/:id',function(req,res){
-    logger.info('GET: /poi:id');
+    logger.info('GET: /poi:id - get POI by token');
     id_val   = req.param('id');
     callback_val = req.param('callback');
-
-    console.log(req);
 
     var arrLength = POIsByVid['poi'].length;
     POIsByVid['poi'][arrLength] = {};
@@ -127,7 +125,7 @@ app.get('/poi/:id',function(req,res){
 //     -> vid means the vehicle id
 //  -  output parameter: {resultCode:0,resultDesc:''}
 app.get('/poi-call/:id',function(req,res){
-    logger.info('GET: /poi-call:id');
+    logger.info('GET: /poi-call:id - get call related POI information');
     id_val   = req.param('id');
     callback_val = req.param('callback');
 
