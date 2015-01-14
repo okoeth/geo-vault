@@ -42,7 +42,8 @@ app.get('/location', function (req, res) {
 	locationsById[req.param('id')] = {
         id : req.param('id'),
         longitude : req.param('longitude'),
-        latitude : req.param('latitude')
+        latitude : req.param('latitude'),
+        datetime: new Date()
 	};
     logger.info('DATA: >>Before write');
     fs.writeFileSync('database.json', JSON.stringify(locationsById));
@@ -55,6 +56,7 @@ app.get('/locations', function (req, res) {
     callback_val = req.param('callback');
     res.end(callback_val+'('+JSON.stringify(locationsById)+');')
 });
+
 app.get('/location/:id', function (req, res) {
     logger.info('GET: /location:id - get location by specified token');
     id_val = req.param('id');
@@ -79,7 +81,7 @@ app.post('/location', function (req, res) {
 
 
 app.get('/call/:id', function (req, res) {
-    logger.info('GET: /call:id');
+    logger.info('GET: /call:id - get call information by id');
     id_val = req.param('id');
     callback_val = req.param('callback');
     res.end(callback_val+'('+JSON.stringify(CallsByCid[id_val])+')')
@@ -124,8 +126,8 @@ app.get('/poi/:id',function(req,res){
 //     -> id means call id
 //     -> vid means the vehicle id
 //  -  output parameter: {resultCode:0,resultDesc:''}
-app.get('/poi-call/:id',function(req,res){
-    logger.info('GET: /poi-call:id - get call related POI information');
+app.get('/poi-call',function(req,res){
+    logger.info('GET: /poi-call - get call related POI information');
     id_val   = req.param('id');
     callback_val = req.param('callback');
 
@@ -162,8 +164,9 @@ app.get("/log",function(req,res){
         if (err) {
             throw err;
         }
-        /*var files = results.file;
-        console.log(files);*/
+        var files = results.file;
+        console.log(files);
+
         res.render('log',{files:results.file});
     });
 })
